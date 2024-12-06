@@ -53,3 +53,4 @@ asyncio.run(scrape_reviews(url))
 Gemini(reviews)
 
 
+# it is working correctly and telling review about the resturants or any other place, it needs a few other updates, 

@@ -6,13 +6,13 @@ import google.generativeai as genai
 url = "https://www.google.com/maps/place/Tahir+Hospital/@31.4501451,73.1071943,512m/data=!3m1!1e3!4m6!3m5!1s0x392269322cbab8ab:0x3ec4f002afe25152!8m2!3d31.4499063!4d73.1070017!16s%2Fg%2F11fj_bgcyh?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSoASAFQAw%3D%3D"
 reviews = []
 async def scrape_reviews(url):
-    async with async_playwright() as p:  # Use async context manager
+    async with async_playwright() as p:   
         
-        browser = await p.chromium.launch(headless=False)  # Launch browser asynchronously
-        page = await browser.new_page()  # Open a new page asynchronously
-        await page.goto(url, timeout = 120000)  # Navigate to the URL asynchronously
+        browser = await p.chromium.launch(headless=False)   
+        page = await browser.new_page()   
+        await page.goto(url, timeout = 120000)  
 
-        # Your scraping logic goes here. For now, let's print the title.
+ 
         title = await page.title()
         print(f"Page Title: {title}")
 
@@ -21,7 +21,7 @@ async def scrape_reviews(url):
         if more_buttons is not None:
             for button in more_buttons:
                 await button.click()
-                await page.wait_for_timeout(1000)  # Wait for reviews to load
+                await page.wait_for_timeout(1000)  
         await page.wait_for_selector('.jftiEf')
         elements = await page.query_selector_all('.jftiEf')
         for element in elements:
@@ -53,4 +53,3 @@ asyncio.run(scrape_reviews(url))
 Gemini(reviews)
 
 
-# it is working correctly and telling review about the resturants or any other place, it needs a few other updates, 
